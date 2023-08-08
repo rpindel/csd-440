@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>
@@ -5,6 +6,14 @@
     </title>
   </head>
   <body>
-    <?php echo "Hello VSCode"; ?>
+
+    <?php 
+    
+    echo "<h1>Hello VSCode</h1>";
+    echo "</br>";
+    echo "<h3>More JSP Like writing...</h3>";
+
+    ?>
+  
   </body>
 </html>
