@@ -2,7 +2,10 @@
 Robin Pindel
 440 mod1 Assignment
 8/8/2023
+
+Simple PHP program for mod1 programming assignment.
 -->
+
 
 <!DOCTYPE html>
 <html>
