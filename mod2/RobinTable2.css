@@ -1,21 +1,40 @@
-table, caption, th, td {
+/*
+Robin Pindel
+440 mod2 Assignment
+8/17/2023
+
+CSS file for RobinTable2.php file.
+*/
+
+
+table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
   padding: 5px;
-}
-
-caption {
-  font-weight: bold;
-  background-color: lightpink;
+  background-color: aliceblue;
 }
 
 td {
   text-align: center;
 }
 
-#table-container {
+#label-container, #table-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+}
+
+#page-container {
+  background-color: lightpink;
+  width: fit-content;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+h1 {
+  margin: 10px 10px 0 10px;
+}
+
+table {
+  margin: 10px 0 10px 0;
 }
