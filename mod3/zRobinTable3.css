@@ -1,0 +1,40 @@
+/*
+Robin Pindel
+440 mod3 Assignment
+8/19/2023
+
+CSS file for RobinTable3.php file.
+*/
+
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+  background-color: aliceblue;
+}
+
+td {
+  text-align: center;
+}
+
+.label-container, #table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#page-container {
+  background-color: yellowgreen;
+  width: fit-content;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+h1 {
+  margin: 10px 10px 0 10px;
+}
+
+table {
+  margin: 10px 0 10px 0;
+}
