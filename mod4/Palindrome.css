@@ -1,0 +1,19 @@
+body {
+  background-color: lightpink;
+}
+
+#container {
+  display: flex;
+}
+
+#palindrome {
+  width: 50%;
+}
+
+#not-palindrome {
+  flex-grow: 1;
+}
+
+h2 {
+  text-align: center;
+}
