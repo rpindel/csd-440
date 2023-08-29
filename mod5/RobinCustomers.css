@@ -8,3 +8,19 @@ th, td {
   text-align: center;
   padding: 5px;
 }
+
+#container {
+  display: flex;
+}
+
+#table {
+  width: 50%;
+}
+
+#results {
+  flex-grow: 1;
+}
+
+/*div {
+  border: 1pt solid red;
+}*/
