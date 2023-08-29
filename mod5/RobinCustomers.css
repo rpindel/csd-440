@@ -1,0 +1,10 @@
+th {
+  font-weight: bold;
+  color: antiquewhite;
+  background-color: brown;
+}
+
+th, td {
+  text-align: center;
+  padding: 5px;
+}

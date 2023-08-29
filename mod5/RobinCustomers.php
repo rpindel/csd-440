@@ -8,7 +8,7 @@ PHP program displaying and working with customer array data.
 
 <head>
   <title>Pindel Mod5 PHP Assignment</title>
-  <link href="./Palindrome.css" type="text/css" rel="stylesheet">
+  <link href="./RobinCustomers.css" type="text/css" rel="stylesheet">
 </head>
 
 <?php
@@ -98,24 +98,12 @@ $customers = array(
   $c10 
 );
 
-#print_r($customers);
-
-/*
-$keys = array_keys($customers);
-for ($i = 0; $i < count($customers); $i++) {
-  echo "<br />";
-  foreach ($customers[$keys[$i]] as $key => $value) {
-    echo $value . "<br />";
-  }
-  echo "<br />";
-}*/
-
 echo "<table border=\"1\">";
 echo "<tr><th>First Name</th><th>Last Name</th><th>Age</th><th>Telephone</th>";
 foreach ($customers as $customer) {
   echo "<tr>";
-  foreach ($customer as $key) {
-    echo "<td> $key </td>";
+  foreach ($customer as $value) {
+    echo "<td> $value </td>";
   }
   echo "</tr>";
 }
