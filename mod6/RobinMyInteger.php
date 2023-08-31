@@ -5,7 +5,9 @@ Robin Pindel
 
 PHP program creating and working with a user-defined class.
 -->
+<!DOCTYPE HTML>
 <head>
+  <title>Robin Pindel mod6 PHP Assignment</title>
   <style>
     p {font-weight: bold;}
     #destroy {color: red;}
