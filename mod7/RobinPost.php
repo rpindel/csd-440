@@ -101,6 +101,8 @@ PHP program creating and working with a form.
     echo "</table>";
     echo "</div>";
     echo "</div>";
+    echo "<br/><br />";
+    echo "<a href=\".\\RobinForm.php\">Try Again</a>";
   }
   else {
     echo "<br />";

@@ -14,7 +14,7 @@ PHP program creating and working with a form.
 </head>
 
 <form action="RobinPost.php" method="post">
-  <fieldset>
+  <fieldset id="form-fields-border">
   <legend>Who are you?</legend>
   <div class="form-element">
     <label>First Name</label> <!-- text -->
