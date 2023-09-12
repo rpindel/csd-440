@@ -101,92 +101,82 @@ $customers = array(
 ?>
 
 <div id="container">
-<div id="table">
+  <div id="table">
 
-<?PHP
-echo "<table border=\"1\">";
-echo "<tr><th>First Name</th><th>Last Name</th><th>Age</th><th>Telephone</th>";
-foreach ($customers as $customer) {
-  echo "<tr>";
-  foreach ($customer as $value) {
-    echo "<td> $value </td>";
-  }
-  echo "</tr>";
-}
-echo "</table>";
+    <?PHP
+    echo "<table border=\"1\">";
+    echo "<th colspan=\"4\">CUSTOMERS</th>";
+    echo "<tr><th>First Name</th><th>Last Name</th><th>Age</th><th>Telephone</th>";
+    foreach ($customers as $customer) {
+      echo "<tr>";
+      foreach ($customer as $value) {
+        echo "<td> $value </td>";
+      }
+    echo "</tr>";
+    }
+    echo "</table>";
 
-?>
+    ?>
 
-</div>
-<div id="results">
+  </div>
+  <div id="results">
 
-<?PHP
+    <?PHP
 
-#####
+    $whophone = array_filter($customers,
+      function ($customer) {
+        return $customer['phone'] === '888-888-8888';
+      }
+    );
 
-$whophone = array_filter($customers,
-  function ($customer) {
-      return $customer['phone'] === '888-888-8888';
-  }
-);
-
-echo "<p>The customer details for whose phone number is 888-888-8888:</p>";
-foreach($whophone as $who) {
-  foreach($who as $what => $details) {
-    echo "{$what} : {$details}";
+    echo "<p>The customer details for whose phone number is 888-888-8888:</p>";
+    foreach($whophone as $who) {
+      foreach($who as $what => $details) {
+        echo "{$what} : {$details}";
+      echo "<br />";
+      }
     echo "<br />";
-  }
-  echo "<br />";
-}
+    }
 
-####
+    $whoname = array_filter($customers,
+      function ($customer) {
+        return $customer['lastname'] === 'Smith';
+      }
+    );
+    usort($whoname, function($a, $b) {
+      return $a['firstname'] <=> $b['firstname'];
+    });
 
-$whoname = array_filter($customers,
-  function ($customer) {
-      return $customer['lastname'] === 'Smith';
-  }
-);
-usort($whoname, function($a, $b) {
-  return $a['firstname'] <=> $b['firstname'];
-});
-
-echo "<p>The customer details for those whose last name is Smith:</p>";
-echo "<p>(Sorted by firstname ascending)</p>";
-foreach($whoname as $who) {
-  foreach($who as $what => $details) {
-    echo "{$what} : {$details}";
+    echo "<p>The customer details for those whose last name is Smith:</p>";
+    echo "<p>(Sorted by firstname ascending)</p>";
+    foreach($whoname as $who) {
+      foreach($who as $what => $details) {
+        echo "{$what} : {$details}";
+        echo "<br />";
+      }
     echo "<br />";
-  }
-  echo "<br />";
-}
+    }
 
-####
+    $whochild = array_filter($customers,
+      function ($customer) {
+        return $customer['age'] < '18';
+      }
+    );
+    usort($whochild, function($a, $b) {
+      return $b['age'] <=> $a['age'];
+    });
 
-$whochild = array_filter($customers,
-  function ($customer) {
-      return $customer['age'] < '18';
-  }
-);
-usort($whochild, function($a, $b) {
-  return $b['age'] <=> $a['age'];
-});
-
-echo "<p>The customer details for those who are not adults:</p>";
-echo "<p>(Sorted by age descending)</p>";
-foreach($whochild as $who) {
-  foreach($who as $what => $details) {
-    echo "{$what} : {$details}";
+    echo "<p>The customer details for those who are not adults:</p>";
+    echo "<p>(Sorted by age descending)</p>";
+    foreach($whochild as $who) {
+      foreach($who as $what => $details) {
+        echo "{$what} : {$details}";
+        echo "<br />";
+      }
     echo "<br />";
-  }
-  echo "<br />";
-}
+    }
 
-####
+    ?>
 
-#$age37 = $whoage[2]["firstname"];
-#echo "$age37 is 37 years old.";
-
-?>
-
-</div>
+  </div>
 </div>

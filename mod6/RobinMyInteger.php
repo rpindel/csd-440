@@ -17,6 +17,7 @@ PHP program creating and working with a user-defined class.
 
 <?PHP
 
+// Create new instance of RobinMyInteger and set value via parameter
 $test = new RobinMyInteger(1);
 echo "<p>Testing with \" " . $test->getValue() . " \"</p>";
 $test->isEven();
@@ -27,6 +28,7 @@ $test->isPrime();
 echo "<br />";
 echo "<br />";
 
+// Use same instance of RobinMyInteger and change value via set method
 $test->setValue(2);
 echo "<p>Testing with \" " . $test->getValue() . " \"</p>";
 $test->isEven();
@@ -37,6 +39,7 @@ $test->isPrime();
 echo "<br />";
 echo "<br />";
 
+// Use same instance of RobinMyInteger and change value via set method
 $test->setValue(3);
 echo "<p>Testing with \" " . $test->getValue() . " \"</p>";
 $test->isEven();
@@ -45,13 +48,14 @@ $test->isOdd();
 echo "<br />";
 $test->isPrime();
 
-$test->setValue(973);
-echo "<p>Testing with \" " . $test->getValue() . " \"</p>";
-$test->isEven();
+// Create new instance of RobinMyInteger and set value via parameter
+$test2 = new RobinMyInteger(973);
+echo "<p>Testing with \" " . $test2->getValue() . " \"</p>";
+$test2->isEven();
 echo "<br />";
-$test->isOdd();
+$test2->isOdd();
 echo "<br />";
-$test->isPrime();
+$test2->isPrime();
 
 
 class RobinMyInteger {
@@ -62,7 +66,7 @@ class RobinMyInteger {
   }  
 
   function __destruct() {
-    echo "<p id=\"destroy\">" . "<br />Bye bye my integer! (Destroyed)" . "</p>";
+    echo "<p id=\"destroy\">" . "<br />Bye bye my integer << {$this->getValue()} >>! (Destroyed)" . "</p>";
   }
 
   function isEven() {

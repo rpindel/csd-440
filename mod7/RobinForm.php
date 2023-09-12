@@ -63,7 +63,7 @@ PHP program creating and working with a form.
       <option value="Yes">Yes</option>
       <option value="Yeess">Yeess</option>
       <option value="OMG YES">OMG YES</option>
-      <option value="...No...">...no...</option>>
+      <option value="...No...">...No...</option>>
     </select>
   </div>
   <div>

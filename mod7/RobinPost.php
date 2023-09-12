@@ -16,10 +16,12 @@ PHP program creating and working with a form.
 
 <?PHP
 
+  // Validate if submitted values from form fields have all been entered by user 
+  // and sent correctly
   $formComplete = True;
   $firstname = $_POST["firstname"];
   $lastname = $_POST["lastname"];
-  $age = $_POST["age"];
+  $age = (int) $_POST["age"];
   if (array_key_exists("radioButton", $_POST)) {
     $alive = $_POST["radioButton"]; 
   }
@@ -41,12 +43,18 @@ PHP program creating and working with a form.
 
   if (!$age) {
     $formComplete = False;
-    $ageError = "You did not provide your age.";
+    $ageError = "You did not provide a valid age.";
   }
-
+ 
   if (!$alive) {
     $formComplete = False;
     $aliveError = "You did not indicate if you were alive.  I think you may be dead...";
+  }
+
+  // Do not mark form incomplete if no checkboxes selected as it is possible someone
+  // does not like any of the options
+  if (empty($_POST["checkbox"])) {
+    $animals = "You did not indicate if you liked any of the listed animals.  Was that an error?";
   }
 
   if (!$morning) {
@@ -104,6 +112,9 @@ PHP program creating and working with a form.
     echo "<br/><br />";
     echo "<a href=\".\\RobinForm.php\">Try Again</a>";
   }
+
+  // Create an array of the errors from the form content submission and display 
+  // to user
   else {
     echo "<br />";
 
@@ -117,13 +128,17 @@ PHP program creating and working with a form.
     if (!$age) {
       array_push($errors, $ageError);
     }
+  
     if (!$alive) {
       array_push($errors, $aliveError);
+    }
+    if (empty($_POST["checkbox"])) {
+      array_push($errors, $animals);
     }
     if (!$morning) {
       array_push($errors, $morningError);
     }
-    if (!$firstname) {
+    if (!$coffee) {
       array_push($errors, $coffeeError);
     }
 
