@@ -4,7 +4,7 @@
   2023-09-11
 
   Reference
-  PHP MySQL create Table. (n.d.). https://www.w3schools.com/php/php_mysql_create_table.asp
+  PHP MySQL Create Table. (n.d.). https://www.w3schools.com/php/php_mysql_create_table.asp
   -->
 
 <head>
@@ -14,6 +14,7 @@
 
 <?PHP
 
+// DB connection details
 $host = "localhost";
 $username = "student1";
 $password = "pass";
@@ -28,6 +29,7 @@ else {
   echo "Connection successful.";
 }
 
+// DB queries setup
 $sqlPsychic = "SELECT * FROM pokemon WHERE (Type_1 = \"Psychic\") OR (Type_2 = \"Psychic\")";
 $sqlDualType = "SELECT * FROM pokemon WHERE Type_2 IS NOT NULL";
 $sqlNameStartsD = "SELECT * FROM pokemon WHERE name LIKE \"D%\"";

@@ -4,12 +4,13 @@
   2023-09-11
 
   Reference
-  PHP MySQL create Table. (n.d.). https://www.w3schools.com/php/php_mysql_create_table.asp
+  PHP MySQL Create Table. (n.d.). https://www.w3schools.com/php/php_mysql_create_table.asp
   -->
 
 
-  <?PHP
+<?PHP
 
+// DB connection details
 $host = "localhost";
 $username = "student1";
 $password = "pass";
@@ -24,6 +25,7 @@ else {
   echo "Connection successful.";
 }
 
+// Populate table logic
 $sql = "INSERT INTO pokemon VALUES
   (143, \"Snorlax\", \"Normal\", NULL, \"Kanto\"),
   (144, \"Articuno\", \"Ice\", \"Flying\", \"Kanto\"),
