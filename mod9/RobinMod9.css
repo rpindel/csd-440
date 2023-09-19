@@ -1,0 +1,35 @@
+table, th, td {
+  border: 1pt solid black;
+  padding: 5px;
+}
+
+td {
+  width: 100px;
+  text-align: center;
+}
+
+caption {
+  border-top: 2pt solid black;
+  border-left: 2pt solid black;
+  border-right: 2pt solid black;
+  border-bottom: 1pt solid black;
+  padding: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+#results {
+  background-color: brown;
+}
+
+#psychic {
+  background-color: purple;
+}
+
+#dual {
+  background-color: green;
+}
+
+#nameD {
+  background-color: chocolate;
+}
