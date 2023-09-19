@@ -150,7 +150,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt -> execute($values);
     $data = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     $rowCount = $stmt -> rowCount();
-    print_r($data);
     if ($rowCount > 0) {
       echo "<br /><br />";
       echo "<table>";
@@ -165,6 +164,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<tr><td> $pokedex_number </td><td> $pokemon_name </td><td> $first_type </td><td> $second_type </td><td> $home_region </td></tr>";
       }
       echo "</table>";
+    }
+    else {
+      echo "<br /><br />";
+      echo "I am sorry but nothing matches those query parameters.";
     }
   }
 }
