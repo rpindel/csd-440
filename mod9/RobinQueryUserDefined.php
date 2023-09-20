@@ -24,23 +24,23 @@
   <fieldset>
     <legend>Find your Pokemon!</legend>
       <div class="form-element">
-        <label>Pokedex number?</label>
+        <label>Pokedex number? </label>
         <input type="text" name="pokedex-number">
       </div>
       <div class="form-element">
-        <label>Pokemon name?</label>
+        <label>Pokemon name? </label>
         <input type="text" name="pokemon-name">
       </div>
       <div class="form-element">
-        <label>Pokemon's first type?</label>
+        <label>Pokemon's first type? </label>
         <input type="text" name="first-type">
       </div>
       <div class="form-element">
-        <label>Pokemon's second type?</label>
+        <label>Pokemon's second type? </label>
         <input type="text" name="second-type">
       </div>
       <div class="form-element">
-        <label>Home region??</label>
+        <label>Home region? </label>
         <input type="text" name="home-region">
       </div>
       <div class="form-element">
@@ -48,6 +48,8 @@
       </div>
   </fieldset>
 </form>
+
+<a href="./RobinIndex.php">Back to Index Page</a>
 
 
 <?PHP
@@ -59,14 +61,13 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (!($_POST['pokemon-name']) && !($_POST['pokedex-number']) && !($_POST['first-type']) && !($_POST['second-type']) && !($_POST['home-region'])) {
     echo "Please fill in at least one value to search the database.";
     echo "<br ?><br ?>";
-    echo "<a href=\"./RobinQuery.php\">Go Back</a>";
+    echo "<a href=\"./RobinQueryUserDefined.php\">Go Back</a>";
+    ?>  &ensp;  <a href="./RobinIndex.php">Back to Index Page</a> <?PHP
   }
   else {
-    echo "You submitted something!";
-    /*echo "<br ?><br ?>";
-    print_r($_POST);*/
+    /*echo "You submitted something!";
     echo "<br ?><br ?>";
-    echo "<a href=\"./RobinQuery.php\">Go Back</a>";
+    echo "<a href=\"./RobinQueryUserDefined.php\">Go Back</a>";*/
 
     // Setup database connection
     $dbHost = "localhost";
@@ -76,7 +77,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try { 
       $dbConnection = new PDO("mysql:host=$dbHost;dbname=$dbName", $username, $password);  
-      echo "<br ?><br ?>";
+      /*echo "<br ?><br ?>";*/
       echo "Successfully connected with $dbName database";  
     } 
     catch(Exception $e) {  
@@ -84,8 +85,8 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Setup query variables
-    $pokemon_name;
     $pokedex_number;
+    $pokemon_name;
     $first_type;
     $second_type;
     $home_region;
@@ -164,15 +165,18 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<tr><td> $pokedex_number </td><td> $pokemon_name </td><td> $first_type </td><td> $second_type </td><td> $home_region </td></tr>";
       }
       echo "</table>";
+      echo "<br />";
+      echo "<a href=\"./RobinQueryUserDefined.php\">Go Back</a>";
+      ?>  &ensp;  <a href="./RobinIndex.php">Back to Index Page</a> <?PHP
     }
     else {
       echo "<br /><br />";
       echo "I am sorry but nothing matches those query parameters.";
+      echo "<br ?><br ?>";
+      echo "<a href=\"./RobinQueryUserDefined.php\">Go Back</a>";
+      ?>  &ensp;  <a href="./RobinIndex.php">Back to Index Page</a> <?PHP
     }
   }
 }
 
 ?>
-
-&ensp;
-<a href="./RobinIndex.php">Back to Index Page</a>

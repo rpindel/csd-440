@@ -49,6 +49,10 @@ else {
 <br /><br />
 <a href="./RobinDropTable.php">Drop Table</a>
 &ensp;
-<a href="./RobinQueryTable.php">Query Table</a>
+<a href="./RobinQueryTable.php">Query Table Test</a>
+&ensp;
+<a href="./RobinQueryUserDefined.php">Query Table How You Like</a>
+&ensp;
+<a href="./RobinForm.php">Add a Record to the Table</a>
 &ensp;
 <a href="./RobinIndex.php">Back to Index Page</a>

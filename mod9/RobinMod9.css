@@ -33,3 +33,19 @@ caption {
 #nameD {
   background-color: chocolate;
 }
+
+.form-element {
+  padding: 5px;
+}
+
+form {
+  width: fit-content;
+}
+
+#required {
+  color: red;
+}
+
+/*div {
+  border: 1pt solid red;
+}*/
