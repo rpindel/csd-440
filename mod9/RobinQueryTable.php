@@ -84,7 +84,5 @@ if($resultNameStartsD = $dbConnection -> query($sqlNameStartsD)) {
 
 ?>
 
-<br /><br />
-<a href="./RobinDropTable.php">Drop Table</a>
-&ensp;
+<br />
 <a href="./RobinIndex.php">Back to Index Page</a>

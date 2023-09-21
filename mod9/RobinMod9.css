@@ -1,3 +1,12 @@
+/*
+  Robin Pindel
+  440 mod9 Programming Assignment
+  2023-09-18
+
+  This program leverages forms to search or add records to a database.
+*/
+
+
 table, th, td {
   border: 1pt solid black;
   padding: 5px;
@@ -44,6 +53,22 @@ form {
 
 #required {
   color: red;
+}
+
+legend {
+  font-weight: bold;
+}
+
+#query-form {
+  background-color: aquamarine;
+}
+
+#add-form {
+  background-color: palegoldenrod;
+}
+
+#index-body {
+  background-color: lightgrey;
 }
 
 /*div {

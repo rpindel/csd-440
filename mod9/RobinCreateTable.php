@@ -34,10 +34,10 @@ $sql = "CREATE TABLE pokemon (
   Home_Region VARCHAR(10) NOT NULL)";
 
 if($dbConnection -> query($sql) === TRUE) {
-  echo "<br />Table created successfully.";
+  echo "<br /><br />Table created successfully.";
 }
 else {
-  echo "<br />Table creation failed: " . $dbConnection -> error;
+  echo "<br /><br />Table creation failed: " . $dbConnection -> error;
 }
 
 ?>

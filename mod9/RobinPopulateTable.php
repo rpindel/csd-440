@@ -38,10 +38,10 @@ $sql = "INSERT INTO pokemon VALUES
   (151, \"Mew\", \"Psychic\", NULL, \"Kanto\")";
 
 if($dbConnection -> query($sql) === TRUE) {
-  echo "<br />Table populated successfully.";
+  echo "<br /><br />Table populated successfully.";
 }
 else {
-  echo "<br />Table population failed: " . $dbConnection -> error;
+  echo "<br /><br />Table population failed: " . $dbConnection -> error;
 }
 
 ?>

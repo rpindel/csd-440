@@ -4,6 +4,12 @@
   2023-09-18
 
   This program leverages forms to search or add records to a database.
+
+  References
+  https://stackoverflow.com/questions/5826784/how-do-i-make-a-php-form-that-submits-to-self
+  https://stackoverflow.com/questions/15794179/create-a-dynamic-mysql-query-using-php-variables
+  https://phpdelusions.net/pdo_examples/dynamical_where
+  https://phpdelusions.net/mysqli_examples/search_filter
 -->
 
 
@@ -15,12 +21,12 @@
 <?PHP if ($_SERVER['REQUEST_METHOD'] === 'GET') { ?>
 
 
-  <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+  <form id="add-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
   <fieldset>
     <legend>Add your Pokemon!</legend>
       <div class="form-element">
         <label>Pokedex number? * </label>
-        <input type="text" name="pokedex-number" required>
+        <input type="text" name="pokedex-number" placeholder="Up to four digits, i.e. 0000" required>
       </div>
       <div class="form-element">
         <label>Pokemon name? * </label>
@@ -32,11 +38,25 @@
       </div>
       <div class="form-element">
         <label>Pokemon's second type?</label>
-        <input type="text" name="second-type">
+        <input type="text" name="second-type" placeholder="Blank will result in NULL">
       </div>
       <div class="form-element">
         <label>Home region? * </label>
-        <input type="text" name="home-region" required>
+        <select name="home-region" required>
+          <option value=""></option>
+          <option value="Kanto">Kanto</option>
+          <option value="Johto">Johto</option>
+          <option value="Hoenn">Hoenn</option>
+          <option value="Sinnoh">Sinnoh</option>
+          <option value="Hisui">Hisui</option>
+          <option value="Unova">Unova</option>
+          <option value="Kalos">Kalos</option>
+          <option value="Alola">Alola</option>
+          <option value="Galar">Galar</option>
+          <option value="Paldea">Paldea</option>
+          <option value="Kitakami">Kitakami</option>
+        </select>
+        <!--<input type="text" name="home-region" required>-->
       </div>
       <div class="form-element">
         <label id="required">* Required</label>
@@ -62,14 +82,12 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = "student1";
   $password = "pass";
 
-  try { 
-    $dbConnection = new PDO("mysql:host=$dbHost;dbname=$dbName", $username, $password);  
-    /*echo "<br ?><br ?>";*/
-    echo "Successfully connected with $dbName database";  
-  } 
-  catch(Exception $e) {  
-    echo "Connection failed" . $e -> getMessage();  
-  }
+  $dbConnection = new mysqli($dbHost, $username, $password, $dbName);
+
+    if ($dbConnection -> connect_error) {
+      die("Database server connection failed: " . $dbConnection -> connect_error);
+    }
+    echo "Database server connection successful.";
 
   // Setup query variables
   $pokedex_number = (int)$_POST['pokedex-number'];
@@ -85,15 +103,11 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Setup database insert
   //$sql = "INSERT INTO pokemon VALUES (pokedex=:pokedex, name=:name, type_1=:type_1, type_2=:type_2, home_region=:home_region)";
-  $sql = "INSERT INTO pokemon VALUES (:pokedex, :name, :type_1, :type_2, :home_region)";
-  $query = $dbConnection -> prepare($sql);
-  $query -> bindParam("pokedex", $pokedex_number, PDO::PARAM_INT);
-  $query -> bindParam("name", $pokemon_name, PDO::PARAM_STR);
-  $query -> bindParam("type_1", $first_type, PDO::PARAM_STR);
-  $query -> bindParam("type_2", $second_type, PDO::PARAM_STR);
-  $query -> bindParam("home_region", $home_region, PDO::PARAM_STR);
-  try {
-    $query -> execute();
+  $query = "INSERT INTO pokemon VALUES (?, ?, ?, ?, ?)";
+  $stmt = $dbConnection -> prepare($query);
+  $stmt -> bind_param("issss", $pokedex_number, $pokemon_name, $first_type, $second_type, $home_region);
+
+  if ($stmt -> execute() === TRUE) {;
     echo "<br /><br ?>";
     echo "Data insert succeeded!";
     echo "<br /><br ?>";
@@ -101,9 +115,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     &ensp;
     <a href="./RobinIndex.php">Back to Index Page</a> <?PHP
   }
-  catch(Exception $e) {
+  else {
     echo "<br /><br />";
-    echo "Data insert failed" . $e -> getMessage();
+    echo "Data insert failed" . $dbConnection -> error;
     echo "<br /><br />";
     ?> <a href="./RobinForm.php">Go Back</a>
     &ensp;

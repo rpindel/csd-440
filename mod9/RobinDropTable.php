@@ -29,10 +29,10 @@ else {
 $sql = "DROP TABLE IF EXISTS pokemon";
 
 if($dbConnection -> query($sql) === TRUE) {
-  echo "<br />Table dropped successfully.";
+  echo "<br /><br />Table dropped successfully.";
 }
 else {
-  echo "<br />Table drop failed: " . $dbConnection -> error;
+  echo "<br /><br />Table drop failed: " . $dbConnection -> error;
 }
 
 ?>

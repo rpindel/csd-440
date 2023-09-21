@@ -9,6 +9,7 @@
   https://stackoverflow.com/questions/5826784/how-do-i-make-a-php-form-that-submits-to-self
   https://stackoverflow.com/questions/15794179/create-a-dynamic-mysql-query-using-php-variables
   https://phpdelusions.net/pdo_examples/dynamical_where
+  https://phpdelusions.net/mysqli_examples/search_filter
 -->
 
 
@@ -20,28 +21,42 @@
 <?PHP if ($_SERVER['REQUEST_METHOD'] === 'GET') { ?>
 
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+<form id="query-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
   <fieldset>
     <legend>Find your Pokemon!</legend>
       <div class="form-element">
         <label>Pokedex number? </label>
-        <input type="text" name="pokedex-number">
+        <input type="text" name="pokedex-number" placeholder="Up to four digits, i.e. 0000">
       </div>
       <div class="form-element">
         <label>Pokemon name? </label>
-        <input type="text" name="pokemon-name">
+        <input type="text" name="pokemon-name" placeholder="Enter name">
       </div>
       <div class="form-element">
         <label>Pokemon's first type? </label>
-        <input type="text" name="first-type">
+        <input type="text" name="first-type" placeholder="Enter first type">
       </div>
       <div class="form-element">
         <label>Pokemon's second type? </label>
-        <input type="text" name="second-type">
+        <input type="text" name="second-type" placeholder="Enter second type (if any)">
       </div>
       <div class="form-element">
         <label>Home region? </label>
-        <input type="text" name="home-region">
+        <select name="home-region">
+          <option value=""></option>
+          <option value="Kanto">Kanto</option>
+          <option value="Johto">Johto</option>
+          <option value="Hoenn">Hoenn</option>
+          <option value="Sinnoh">Sinnoh</option>
+          <option value="Hisui">Hisui</option>
+          <option value="Unova">Unova</option>
+          <option value="Kalos">Kalos</option>
+          <option value="Alola">Alola</option>
+          <option value="Galar">Galar</option>
+          <option value="Paldea">Paldea</option>
+          <option value="Kitakami">Kitakami</option>
+        </select>
+        <!--<input type="text" name="home-region" placeholder="Enter home region">-->
       </div>
       <div class="form-element">
         <button type="submit">Find 'em all!</button>
@@ -74,15 +89,13 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dbName = "baseball_01";
     $username = "student1";
     $password = "pass";
-    
-    try { 
-      $dbConnection = new PDO("mysql:host=$dbHost;dbname=$dbName", $username, $password);  
-      /*echo "<br ?><br ?>";*/
-      echo "Successfully connected with $dbName database";  
-    } 
-    catch(Exception $e) {  
-      echo "Connection failed" . $e -> getMessage();  
+
+    $dbConnection = new mysqli($dbHost, $username, $password, $dbName);
+
+    if ($dbConnection -> connect_error) {
+      die("Database server connection failed: " . $dbConnection -> connect_error);
     }
+    echo "Database server connection successful.";
 
     // Setup query variables
     $pokedex_number;
@@ -148,15 +161,17 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt = $dbConnection -> prepare($query);
-    $stmt -> execute($values);
-    $data = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-    $rowCount = $stmt -> rowCount();
+    $stmt -> bind_param(str_repeat("s", count($values)), ...$values);
+    $stmt -> execute();
+    $result = $stmt -> get_result();
+    $result -> fetch_all(MYSQLI_ASSOC);
+    $rowCount = mysqli_num_rows($result);
     if ($rowCount > 0) {
       echo "<br /><br />";
       echo "<table>";
       echo "<caption id=\"results\">Query Results</caption>";
       echo "<tr><th>Pokedex</th><th>Name</th><th>Type 1</th><th>Type 2</th><th>Home Region</th></tr>";
-      foreach ($data as $row) {
+      foreach ($result as $row) {
         $pokedex_number = $row['Pokedex'];
         $pokemon_name = $row['Name'];
         $first_type = $row['Type_1'];
