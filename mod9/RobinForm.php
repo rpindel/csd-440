@@ -20,8 +20,8 @@
 
 <?PHP if ($_SERVER['REQUEST_METHOD'] === 'GET') { ?>
 
-
-  <form id="add-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+<!-- Form to generate database query from user defined values -->
+<form id="add-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
   <fieldset>
     <legend>Add your Pokemon!</legend>
       <div class="form-element">
@@ -34,11 +34,53 @@
       </div>
       <div class="form-element">
         <label>Pokemon's first type? * </label>
-        <input type="text" name="first-type" required>
+        <!-- <input type="text" name="first-type" required> -->
+        <select name="first-type">
+          <option value=""></option>
+          <option value="Normal">Normal</option>
+          <option value="Fire">Fire</option>
+          <option value="Water">Water</option>
+          <option value="Grass">Grass</option>
+          <option value="Flying">Flying</option>
+          <option value="Fighting">Fighting</option>
+          <option value="Poison">Poison</option>
+          <option value="Electric">Electric</option>
+          <option value="Ground">Ground</option>
+          <option value="Rock">Rock</option>
+          <option value="Psychic">Psychic</option>
+          <option value="Ice">Ice</option>
+          <option value="Bug">Bug</option>  
+          <option value="Ghost">Ghost</option>
+          <option value="Dragon">Dragon</option>
+          <option value="Dark">Dark</option>
+          <option value="Steel">Steel</option>
+          <option value="Fairy">Fairy</option>
+        </select>
       </div>
       <div class="form-element">
         <label>Pokemon's second type?</label>
-        <input type="text" name="second-type" placeholder="Blank will result in NULL">
+        <!-- <input type="text" name="second-type" placeholder="Blank will result in NULL"> -->
+        <select name="second-type">
+          <option value=""></option>
+          <option value="Normal">Normal</option>
+          <option value="Fire">Fire</option>
+          <option value="Water">Water</option>
+          <option value="Grass">Grass</option>
+          <option value="Flying">Flying</option>
+          <option value="Fighting">Fighting</option>
+          <option value="Poison">Poison</option>
+          <option value="Electric">Electric</option>
+          <option value="Ground">Ground</option>
+          <option value="Rock">Rock</option>
+          <option value="Psychic">Psychic</option>
+          <option value="Ice">Ice</option>
+          <option value="Bug">Bug</option>  
+          <option value="Ghost">Ghost</option>
+          <option value="Dragon">Dragon</option>
+          <option value="Dark">Dark</option>
+          <option value="Steel">Steel</option>
+          <option value="Fairy">Fairy</option>
+        </select>
       </div>
       <div class="form-element">
         <label>Home region? * </label>
@@ -56,7 +98,6 @@
           <option value="Paldea">Paldea</option>
           <option value="Kitakami">Kitakami</option>
         </select>
-        <!--<input type="text" name="home-region" required>-->
       </div>
       <div class="form-element">
         <label id="required">* Required</label>
@@ -89,7 +130,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     echo "Database server connection successful.";
 
-  // Setup query variables
+  // Setup database query variables
   $pokedex_number = (int)$_POST['pokedex-number'];
   $pokemon_name = $_POST['pokemon-name'];
   $first_type = $_POST['first-type'];
@@ -102,7 +143,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $home_region = $_POST['home-region'];
 
   // Setup database insert
-  //$sql = "INSERT INTO pokemon VALUES (pokedex=:pokedex, name=:name, type_1=:type_1, type_2=:type_2, home_region=:home_region)";
   $query = "INSERT INTO pokemon VALUES (?, ?, ?, ?, ?)";
   $stmt = $dbConnection -> prepare($query);
   $stmt -> bind_param("issss", $pokedex_number, $pokemon_name, $first_type, $second_type, $home_region);
@@ -128,9 +168,3 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 ?>
-
-
-<!--<br />
-<a href="./RobinForm.php">Go Back</a>
-&ensp;
-<a href="./RobinIndex.php">Back to Index Page</a>-->

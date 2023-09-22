@@ -14,6 +14,7 @@
   <title>Pindel mod9 Index Page</title>
 </head>
 
+<!-- Hyperlink index of all actions available in overall program -->
 <body id="index-body">
   <h1>Pokemon Database (Table really...)</h1>
 

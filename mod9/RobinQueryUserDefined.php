@@ -20,7 +20,7 @@
 
 <?PHP if ($_SERVER['REQUEST_METHOD'] === 'GET') { ?>
 
-
+<!-- Form to generate database query from user defined values -->
 <form id="query-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
   <fieldset>
     <legend>Find your Pokemon!</legend>
@@ -34,11 +34,53 @@
       </div>
       <div class="form-element">
         <label>Pokemon's first type? </label>
-        <input type="text" name="first-type" placeholder="Enter first type">
+        <!-- input type="text" name="first-type" placeholder="Enter first type"> -->
+        <select name="first-type" placeholder="Enter first type">
+          <option value=""></option>
+          <option value="Normal">Normal</option>
+          <option value="Fire">Fire</option>
+          <option value="Water">Water</option>
+          <option value="Grass">Grass</option>
+          <option value="Flying">Flying</option>
+          <option value="Fighting">Fighting</option>
+          <option value="Poison">Poison</option>
+          <option value="Electric">Electric</option>
+          <option value="Ground">Ground</option>
+          <option value="Rock">Rock</option>
+          <option value="Psychic">Psychic</option>
+          <option value="Ice">Ice</option>
+          <option value="Bug">Bug</option>
+          <option value="Ghost">Ghost</option>
+          <option value="Dragon">Dragon</option>
+          <option value="Dark">Dark</option>
+          <option value="Steel">Steel</option>
+          <option value="Fairy">Fairy</option>
+        </select>
       </div>
       <div class="form-element">
-        <label>Pokemon's second type? </label>
-        <input type="text" name="second-type" placeholder="Enter second type (if any)">
+        <label>Pokemon's second type? (If any)</label>
+        <!-- <input type="text" name="second-type" placeholder="Enter second type (if any)"> -->
+        <select name="second-type">
+          <option value=""></option>
+          <option value="Normal">Normal</option>
+          <option value="Fire">Fire</option>
+          <option value="Water">Water</option>
+          <option value="Grass">Grass</option>
+          <option value="Flying">Flying</option>
+          <option value="Fighting">Fighting</option>
+          <option value="Poison">Poison</option>
+          <option value="Electric">Electric</option>
+          <option value="Ground">Ground</option>
+          <option value="Rock">Rock</option>
+          <option value="Psychic">Psychic</option>
+          <option value="Ice">Ice</option>
+          <option value="Bug">Bug</option>  
+          <option value="Ghost">Ghost</option>
+          <option value="Dragon">Dragon</option>
+          <option value="Dark">Dark</option>
+          <option value="Steel">Steel</option>
+          <option value="Fairy">Fairy</option>
+        </select>
       </div>
       <div class="form-element">
         <label>Home region? </label>
@@ -56,7 +98,6 @@
           <option value="Paldea">Paldea</option>
           <option value="Kitakami">Kitakami</option>
         </select>
-        <!--<input type="text" name="home-region" placeholder="Enter home region">-->
       </div>
       <div class="form-element">
         <button type="submit">Find 'em all!</button>
@@ -80,10 +121,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ?>  &ensp;  <a href="./RobinIndex.php">Back to Index Page</a> <?PHP
   }
   else {
-    /*echo "You submitted something!";
-    echo "<br ?><br ?>";
-    echo "<a href=\"./RobinQueryUserDefined.php\">Go Back</a>";*/
-
     // Setup database connection
     $dbHost = "localhost";
     $dbName = "baseball_01";
@@ -97,7 +134,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     echo "Database server connection successful.";
 
-    // Setup query variables
+    // Setup database query variables
     $pokedex_number;
     $pokemon_name;
     $first_type;
@@ -125,7 +162,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $home_region = $_POST['home-region'];
     }
 
-    //Setup database query
+    //Setup database query itself
     $conditions = [];
     $values = [];
 
@@ -160,12 +197,15 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $query .= " WHERE " . implode(" AND ", $conditions);
     }
 
+    // Prepare and execute database query
     $stmt = $dbConnection -> prepare($query);
     $stmt -> bind_param(str_repeat("s", count($values)), ...$values);
     $stmt -> execute();
     $result = $stmt -> get_result();
     $result -> fetch_all(MYSQLI_ASSOC);
     $rowCount = mysqli_num_rows($result);
+    
+    // Output database query results to table layout
     if ($rowCount > 0) {
       echo "<br /><br />";
       echo "<table>";
