@@ -18,3 +18,41 @@ form {
 legend, label {
   font-weight: bolder;
 }
+
+td {
+  text-align: center;
+  padding: 5pt;
+  width: 100pt;
+}
+
+.title {
+  background-color: lightcoral;
+  font-weight: bold;
+}
+
+#container {
+  display: flex;
+}
+
+#raw {
+  width: 50%;
+}
+
+#table {
+  flex-grow: 1;
+  margin-left: 40pt;
+}
+
+a {
+  color: blue;
+  padding: 3pt;
+}
+
+a:visited {
+  color: blueviolet;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: aquamarine;
+}

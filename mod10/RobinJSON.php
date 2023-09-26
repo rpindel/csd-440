@@ -114,10 +114,78 @@ This program takes user input, makes it into JSON format, and then exports the J
 
 <?PHP }
 
-elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  
-  echo "Form posted!";
-  echo "<br /><br />";
-  print_r($_POST);
+elseif ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
 
-} ?>
+<div id="container">
+  <div id="raw">
+
+  <?PHP
+  
+    # echo "Form posted!";
+    # echo "<br /><br /></br >";
+    echo "<br /><b>Raw PHP \$_POST Array: </b><br /><br />";
+    print_r($_POST);
+    echo "<br /><br /><br />";
+    echo "<b>Raw Encoded JSON Array: </b><br /><br />";
+    echo json_encode($_POST);
+    echo "<br /><br /><br />";
+    echo "<b>Encoded JSON Array with Pretty Print: </b><br />";
+    $_postPretty = json_encode($_POST, JSON_PRETTY_PRINT);
+    echo "<pre>" . $_postPretty . "</pre>";
+    
+  ?>
+
+  </div>
+
+  <div id="table">
+
+  <?PHP
+
+    echo "<br /><b>Decoded JSON to PHP Associative Array: </b><br />";
+    $_jsonToPHPArray = json_decode($_postPretty, true);
+
+  ?>
+
+    <table border="1"><br />
+      <tr>
+        <td class="title">Name</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["name"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Type #1</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["first-type"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Type #2</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["second-type"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Level</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["level"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Nature</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["nature"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Ability</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["ability"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Shiny</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["shiny"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Move #1</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["move-1"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Move #2</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["move-2"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Move #3</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["move-3"]); ?></td>
+      </tr>
+      <tr>
+        <td class="title">Move #4</td><td><?PHP echo htmlspecialchars($_jsonToPHPArray["move-4"]); ?></td>
+      </tr>
+    </table>
+  
+  <br /><br />
+  <a href="./RobinJSON.php">Go Back and Request a New Pokemon</a>  
+  </div>
+
+</div>
+
+<?PHP } ?>
