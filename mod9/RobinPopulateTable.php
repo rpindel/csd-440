@@ -27,15 +27,15 @@ else {
 
 // Populate table logic
 $sql = "INSERT INTO pokemon VALUES
-  (143, \"Snorlax\", \"Normal\", NULL, \"Kanto\"),
+  (143, \"Snorlax\", \"Normal\", \"None\", \"Kanto\"),
   (144, \"Articuno\", \"Ice\", \"Flying\", \"Kanto\"),
   (145, \"Zapdos\", \"Electric\", \"Flying\", \"Kanto\"),
   (146, \"Moltres\", \"Fire\", \"Flying\", \"Kanto\"),
-  (147, \"Dratini\", \"Dragon\", NULL, \"Kanto\"),
-  (148, \"Dragonair\", \"Dragon\", NULL, \"Kanto\"),
+  (147, \"Dratini\", \"Dragon\", \"None\", \"Kanto\"),
+  (148, \"Dragonair\", \"Dragon\", \"None\", \"Kanto\"),
   (149, \"Dragonite\", \"Dragon\", \"Flying\", \"Kanto\"),
-  (150, \"Mewtwo\", \"Psychic\", NULL, \"Kanto\"),
-  (151, \"Mew\", \"Psychic\", NULL, \"Kanto\")";
+  (150, \"Mewtwo\", \"Psychic\", \"None\", \"Kanto\"),
+  (151, \"Mew\", \"Psychic\", \"None\", \"Kanto\")";
 
 if($dbConnection -> query($sql) === TRUE) {
   echo "<br /><br />Table populated successfully.";
@@ -49,9 +49,9 @@ else {
 <br /><br />
 <a href="./RobinDropTable.php">Drop Table</a>
 &ensp;
-<a href="./RobinQueryTable.php">Query Table Test</a>
+<a href="./RobinQueryTable.php">Query Table - Test</a>
 &ensp;
-<a href="./RobinQueryUserDefined.php">Query Table How You Like</a>
+<a href="./RobinQueryUserDefined.php">Query Table - You Decide How to Query</a>
 &ensp;
 <a href="./RobinForm.php">Add a Record to the Table</a>
 &ensp;

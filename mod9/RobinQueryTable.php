@@ -31,7 +31,7 @@ else {
 
 // DB queries setup
 $sqlPsychic = "SELECT * FROM pokemon WHERE (Type_1 = \"Psychic\") OR (Type_2 = \"Psychic\")";
-$sqlDualType = "SELECT * FROM pokemon WHERE Type_2 IS NOT NULL";
+$sqlDualType = "SELECT * FROM pokemon WHERE Type_2 != \"None\"";
 $sqlNameStartsD = "SELECT * FROM pokemon WHERE name LIKE \"D%\"";
 
 if($resultPsychic = $dbConnection -> query($sqlPsychic)) {

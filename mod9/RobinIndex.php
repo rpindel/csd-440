@@ -24,9 +24,9 @@
   <br /><br />
   <a href="./RobinPopulateTable.php">Initially Populate the Table</a>
   <br /><br />
-  <a href="./RobinQueryTable.php">Query the Table Test</a>
+  <a href="./RobinQueryTable.php">Query the Table - Test</a>
   <br /><br />
-  <a href="./RobinQueryUserDefined.php">Query the Table You Decide</a>
+  <a href="./RobinQueryUserDefined.php">Query the Table - You Decide How To Query</a>
   <br /><br />
   <a href="./RobinForm.php">Add a Record to the Table</a>
 

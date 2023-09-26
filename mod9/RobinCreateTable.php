@@ -30,7 +30,7 @@ $sql = "CREATE TABLE pokemon (
   Pokedex INT(4) ZEROFILL NOT NULL PRIMARY KEY,
   Name VARCHAR(20) NOT NULL,
   Type_1 VARCHAR(10) NOT NULL,
-  Type_2 VARCHAR(10),
+  Type_2 VARCHAR(10) NOT NULL,
   Home_Region VARCHAR(10) NOT NULL)";
 
 if($dbConnection -> query($sql) === TRUE) {

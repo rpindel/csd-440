@@ -25,17 +25,17 @@
   <fieldset>
     <legend>Add your Pokemon!</legend>
       <div class="form-element">
-        <label>Pokedex number? * </label>
+        <label>Pokedex number? * &ensp;</label>
         <input type="text" name="pokedex-number" placeholder="Up to four digits, i.e. 0000" required>
       </div>
       <div class="form-element">
-        <label>Pokemon name? * </label>
+        <label>Pokemon name? * &ensp;</label>
         <input type="text" name="pokemon-name" required>
       </div>
       <div class="form-element">
-        <label>Pokemon's first type? * </label>
+        <label>Pokemon's first type? * &ensp;</label>
         <!-- <input type="text" name="first-type" required> -->
-        <select name="first-type">
+        <select name="first-type" required>
           <option value=""></option>
           <option value="Normal">Normal</option>
           <option value="Fire">Fire</option>
@@ -58,10 +58,11 @@
         </select>
       </div>
       <div class="form-element">
-        <label>Pokemon's second type?</label>
+        <label>Pokemon's second type? * &ensp;</label>
         <!-- <input type="text" name="second-type" placeholder="Blank will result in NULL"> -->
-        <select name="second-type">
+        <select name="second-type" required>
           <option value=""></option>
+          <option value="None">None</option>
           <option value="Normal">Normal</option>
           <option value="Fire">Fire</option>
           <option value="Water">Water</option>
@@ -83,7 +84,7 @@
         </select>
       </div>
       <div class="form-element">
-        <label>Home region? * </label>
+        <label>Home region? * &ensp;</label>
         <select name="home-region" required>
           <option value=""></option>
           <option value="Kanto">Kanto</option>
@@ -100,7 +101,7 @@
         </select>
       </div>
       <div class="form-element">
-        <label id="required">* Required</label>
+        <label id="required"><i>* Required</i></label>
       </div>
       <div class="form-element">
         <button type="submit">Add 'em all!</button>
