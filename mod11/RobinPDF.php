@@ -6,7 +6,9 @@ Robin Pindel
 This program exports the database information from mod8 and mod9 into a PDF output.
 
 References
-Tatroe, K., & MacIntyre, P. (2020b). Programming PHP: Creating Dynamic Web Pages.
+  FPDF error: Some data has already been output, can’t send PDF. (n.d.-b). Stack Overflow. https://stackoverflow.com/questions/9475686/fpdf-error-some-data-has-already-been-output-cant-send-pdf
+
+  Tatroe, K., & MacIntyre, P. (2020b). Programming PHP: Creating Dynamic Web Pages.
 -->
 
 
