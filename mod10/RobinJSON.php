@@ -13,6 +13,7 @@ This program takes user input, makes it into JSON format, and then exports the J
 
 <?PHP if ($_SERVER['REQUEST_METHOD'] === 'GET') { ?>
 
+<!-- Request input from user on their custom Pokemon -->
 <form name="custom-pokemon-order" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
   <fieldset>
     <legend>Request your Pokemon!</legend>
@@ -123,13 +124,19 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
   
     # echo "Form posted!";
     # echo "<br /><br /></br >";
+    
+    // Output to display the PHP $_POST array of user input
     echo "<br /><b>Raw PHP \$_POST Array: </b><br /><br />";
     print_r($_POST);
     echo "<br /><br /><br />";
-    echo "<b>Raw Encoded JSON Array: </b><br /><br />";
+
+    // Output to display the JSON object of the PHP $_POST array after of user input
+    echo "<b>Encoded JSON Object: </b><br /><br />";
     echo json_encode($_POST);
     echo "<br /><br /><br />";
-    echo "<b>Encoded JSON Array with Pretty Print: </b><br />";
+
+    // Output to display the JSON object of the PHP $_POST array after of user input but using Pretty Print modifier
+    echo "<b>Encoded JSON Object with Pretty Print: </b><br />";
     $_postPretty = json_encode($_POST, JSON_PRETTY_PRINT);
     echo "<pre>" . $_postPretty . "</pre>";
     
@@ -141,6 +148,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
 
   <?PHP
 
+    // Decode JSON object back to PHP associative array and output to table display 
     echo "<br /><b>Decoded JSON to PHP Associative Array: </b><br />";
     $_jsonToPHPArray = json_decode($_postPretty, true);
 
