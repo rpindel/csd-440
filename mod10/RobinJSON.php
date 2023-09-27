@@ -121,6 +121,33 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
   <div id="raw">
 
   <?PHP
+
+  // Logic to check for values that cannot be the same: type 1 and type 2 and all moves
+  if ($_POST["first-type"] === $_POST["second-type"]) {
+    echo "<br />";
+    echo "The first type and second type must be different.  Please go back and adjust accordingly.";
+    echo "<br /><br />";
+    echo "<a href=\".\RobinJSON.php\">Back to Form</a>";
+  }
+  elseif (($_POST["move-1"] === $_POST["move-2"]) || ($_POST["move-1"] === $_POST["move-3"]) || ($_POST["move-1"] === $_POST["move-4"])) {
+    echo "<br />";
+    echo "All moves must be different.  Please go back and adjust accordingly.";
+    echo "<br /><br />";
+    echo "<a href=\".\RobinJSON.php\">Back to Form</a>";
+  }
+  elseif (($_POST["move-2"] === $_POST["move-1"]) || ($_POST["move-2"] === $_POST["move-3"]) || ($_POST["move-2"] === $_POST["move-4"])) {
+    echo "<br />";
+    echo "All moves must be different.  Please go back and adjust accordingly.";
+    echo "<br /><br />";
+    echo "<a href=\".\RobinJSON.php\">Back to Form</a>";
+  }
+  elseif (($_POST["move-3"] === $_POST["move-1"]) || ($_POST["move-3"] === $_POST["move-2"]) || ($_POST["move-3"] === $_POST["move-4"])) {
+    echo "<br />";
+    echo "All moves must be different.  Please go back and adjust accordingly.";
+    echo "<br /><br />";
+    echo "<a href=\".\RobinJSON.php\">Back to Form</a>";
+  }
+  else {
   
     # echo "Form posted!";
     # echo "<br /><br /></br >";
@@ -196,4 +223,4 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
 
 </div>
 
-<?PHP } ?>
+<?PHP }} ?>
