@@ -8,7 +8,7 @@ This program exports the database information from mod8 and mod9 into a PDF outp
 References
   FPDF error: Some data has already been output, can’t send PDF. (n.d.-b). Stack Overflow. https://stackoverflow.com/questions/9475686/fpdf-error-some-data-has-already-been-output-cant-send-pdf
 
-  Tatroe, K., & MacIntyre, P. (2020b). Programming PHP: Creating Dynamic Web Pages.
+  Tatroe, K., & MacIntyre, P. (2020b). Programming PHP: Creating Dynamic Web Pages, Chapter 11 Pages 283 - 285.
 -->
 
 
@@ -59,7 +59,17 @@ class TablePDF extends FPDF {
     }
     
     $this -> cell(array_sum($widths), 0, "", "T");
-  
+  }
+  function header() { //Footer needed per assignment but needs to be in a class as it needs to be an extended empty method
+    // Position at 1.5 cm from bottom
+    $this -> SetFont("Times", "I", 10);
+    $this -> cell(0, 10, "Pindel Pokemon Database | I am the Header | 2023 CSD-440 Mod11 Assignment", 0, 0, "C");
+}
+  function footer() { //Footer needed per assignment but needs to be in a class as it needs to be an extended empty method
+      // Position at 1.5 cm from bottom
+      $this -> setY(-15);
+      $this -> SetFont("Times", "I", 10);
+      $this -> cell(0, 10, "Pindel Pokemon Database | I am the Footer | 2023 CSD-440 Mod11 Assignment", 0, 0, "C");
   }
 }
 
@@ -89,13 +99,29 @@ while ($row = $results -> fetch_assoc()) {
 $pdf = new TablePDF();
 
 // Column titles
-$header = array("Pokedex", "Name", "Type_1", "Type_2", "Home_Region");
+$header = array("Pokedex", "Name", "Type 1", "Type 2", "Home Region");
 
-$pdf -> SetFont("Arial", "", 14);
+$pdf -> SetFont("Arial", "B", 14);
 
 $pdf -> AddPage();
 
+// PDF document title
+$pdf -> ln(20);
+$pdf -> cell(0, 0, "What is this data?", 0, 0, "L");
+$pdf -> ln(10);
+
+// PDF document information description
+$pdf -> SetFont("Arial", "", 14);
+$pdf -> cell(0, 0, "These are the last nine (9) Pokemon found in the original Kanto region pokedex", 0, 0, "L");
+$pdf -> ln(6);
+$pdf -> cell(0, 0, "presented in a PHP-generated PDF.", 0, 0, "L");
+$pdf -> ln(10);
+
 $pdf -> buildTable($header, $data);
+
+$pdf -> ln(10);
+$pdf -> SetFont("Arial", "", 8);
+$pdf -> cell(0, 0, "(Scroll down for bottom-of-page footer)", 0, 0, "C");
 
 $pdf -> Output();
 
